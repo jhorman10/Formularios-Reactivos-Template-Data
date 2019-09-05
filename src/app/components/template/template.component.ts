@@ -13,7 +13,8 @@ export class TemplateComponent {
     apellido: null,
     email: null,
     pais: 'CO',
-    sexo: 'Hombre'
+    sexo: 'Hombre',
+    acepta: false
   };
 
   paises = [
@@ -30,6 +31,18 @@ export class TemplateComponent {
       nombre: 'Puerto Rico'
     }
   ];
+
+  // tslint:disable-next-line:ban-types
+  sexos: Object[] = [{
+    sexo : 'H',
+    nombre : 'Hombre'
+  }, {
+    sexo : 'M',
+    nombre : 'Mujer'
+  }, {
+    sexo : 'O',
+    nombre : 'Otro'
+  }];
 
   constructor() { }
 
