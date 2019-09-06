@@ -1,42 +1,64 @@
-<h4>Formularios <small>Dataa</small></h4>
+<h4>Formularios <small>Data</small></h4>
 <hr>
-<form>
+<form [formGroup]="forma" (ngSubmit)="guardarCambios()">
 
   <div>
 
-    <div class="form-group row">
+    <div class="form-group row" [ngClass]="{'is-invalid': !forma.get('nombre').valid}">
       <label class="col-2 col-form-label">Nombre</label>
       <div class="col-8">
 
         <input class="form-control"
                type="text"
-               placeholder="Nombre">
-      </div>
-    </div>
+               placeholder="Nombre"
+               formControlName="nombre">
 
-    <div class="form-group row">
+               <div *ngIf="forma.controls['nombre'].errors?.required"
+                    class="col-md-8 invalid-feedback">
+                   <small>el campo es requerido</small> 
+               </div>
+               <div *ngIf="forma.controls['nombre'].errors?.minlength"
+                    class="col-md-8 invalid-feedback">
+                   <small>minimo 3 caracteres</small> 
+               </div>
+      </div>
+    </div> 
+
+    <div class="form-group row" [ngClass]="{'is-invalid': !forma.get('apellido').valid}">
       <label class="col-2 col-form-label">Apellido</label>
       <div class="col-8">
 
         <input class="form-control"
                type="text"
-               placeholder="Apellido">
+               placeholder="Apellido"
+               formControlName="apellido">
+               <div *ngIf="forma.controls['apellido'].errors?.required"
+                    class="col-md-8 invalid-feedback">
+                   <small>el campo es requerido</small> 
+               </div>
+               <div *ngIf="forma.controls['apellido'].errors?.minlength"
+                    class="col-md-8 invalid-feedback">
+                   <small>minimo 5 caracteres</small> 
+               </div>
       </div>
     </div>
 
   </div>
 
-  <div class="form-group row">
+  <div class="form-group row" [ngClass]="{'is-invalid': !forma.get('email').valid}">
     <label class="col-2 col-form-label">Correo</label>
     <div class="col-md-8">
 
       <input class="form-control"
              type="email"
-             placeholder="Correo electrónico">
+             placeholder="Correo electrónico"
+             formControlName="email">
+             <div *ngIf="forma.controls['email'].errors.email"
+                  class="col-md-8 invalid-feedback">
+               <small>el campo es requerido</small> 
+             </div>
     </div>
   </div>
-
-
 
   <div class="form-group row">
     <label class="col-2 col-form-label">&nbsp;</label>
@@ -48,3 +70,6 @@
   </div>
 
 </form>
+<pre>
+  {{forma.status}}
+</pre>
